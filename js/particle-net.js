@@ -18,7 +18,8 @@
         mousePull: 0.045,       // 鼠标吸引力（0 就是只连线不吸引）
         color: '0, 224, 176',   // 颜色 RGB，用逗号分隔
         opacity: 0.9,           // 整体透明度
-        speed: 0.45,            // 飘动速度（px/帧）
+        speed: 0.95,            // 飘移速度上限（px/帧）—— 鼠标不动时画面靠它保持"活着"
+        minSpeedRatio: 0.45,    // 最慢粒子的速度占 speed 的比例（保证没有粒子看起来是静止的）
         zIndex: 3,              // 层级：-1 = 垫在内容下面；正数 = 盖在文章卡片上（用户要求能看到）
         mobile: false           // 触屏设备是否启用
     };
@@ -53,11 +54,15 @@
     function spawn() {
         dots = [];
         for (var i = 0; i < CONFIG.count; i++) {
+            // 方向随机、速度在 [speed*minSpeedRatio, speed] 之间随机 ——
+            // 关键是保证每个粒子都动，不然分到接近 0 速度的那些看起来就是静止的
+            var ang = Math.random() * Math.PI * 2;
+            var sp = CONFIG.speed * (CONFIG.minSpeedRatio + Math.random() * (1 - CONFIG.minSpeedRatio));
             dots.push({
                 x: Math.random() * W,
                 y: Math.random() * H,
-                vx: (Math.random() * 2 - 1) * CONFIG.speed,
-                vy: (Math.random() * 2 - 1) * CONFIG.speed
+                vx: Math.cos(ang) * sp,
+                vy: Math.sin(ang) * sp
             });
         }
     }
