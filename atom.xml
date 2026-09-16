@@ -10,7 +10,26 @@
   <rights>All rights reserved 2026, 止水来咯</rights>
   <subtitle>护网 · SRC · CTF 学习笔记</subtitle>
   <title>止水来咯</title>
-  <updated>2026-09-16T05:46:58.685Z</updated>
+  <updated>2026-09-16T05:59:28.999Z</updated>
+  <entry>
+    <author>
+      <name>止水来咯</name>
+    </author>
+    <category term="教程" scheme="https://othgh.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    <category term="Hexo" scheme="https://othgh.github.io/tags/Hexo/"/>
+    <category term="图片" scheme="https://othgh.github.io/tags/%E5%9B%BE%E7%89%87/"/>
+    <content>
+      <![CDATA[<p>这是一篇<strong>演示文章</strong>，专门演示怎么在文章里放图片。看完就可以删掉。</p><span id="more"></span><h2 id="一、文章和它的图片文件夹"><a href="#一、文章和它的图片文件夹" class="headerlink" title="一、文章和它的图片文件夹"></a>一、文章和它的图片文件夹</h2><p>用 <code>hexo new</code> 建文章时，会自动在文章旁边生成一个<strong>同名文件夹</strong>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">source/_posts/</span><br><span class="line">├── image-demo.md      ← 文章</span><br><span class="line">└── image-demo/        ← 这篇专属的图片文件夹</span><br><span class="line">    ├── 1.png</span><br><span class="line">    ├── 2.png</span><br><span class="line">    └── 3.png</span><br></pre></td></tr></table></figure><p>截图丢进那个文件夹就行。</p><h2 id="二、正文里怎么引用"><a href="#二、正文里怎么引用" class="headerlink" title="二、正文里怎么引用"></a>二、正文里怎么引用</h2><p><strong>只写文件名</strong>，不用写路径：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">第一张截图</span>](<span class="link">1.png</span>)</span><br></pre></td></tr></table></figure><p>效果就是下面这样：</p><p><img src="/2026/09/16/image-demo/1.png" alt="第一张截图"></p><h2 id="三、连放多张"><a href="#三、连放多张" class="headerlink" title="三、连放多张"></a>三、连放多张</h2><p><img src="/2026/09/16/image-demo/2.png" alt="第二张截图"></p><p><img src="/2026/09/16/image-demo/3.png" alt="第三张截图"></p><p>点一下图片可以放大（灯箱效果），再点一下还原。</p><h2 id="四、几个要点"><a href="#四、几个要点" class="headerlink" title="四、几个要点"></a>四、几个要点</h2><ol><li><strong>图片名用英文或数字</strong>。中文名不会报错，但网址会变成 <code>/xxx/%E6%88%AA%E5%9B%BE.png</code> 这种一长串编码</li><li><strong>文件名和显示标题是两回事</strong>：这篇的文件叫 <code>image-demo.md</code>（网址干净），标题显示为「图片插入演示」（front-matter 里的 <code>title</code>）</li><li><strong>公共图片</strong>（全站共用的，比如头像 logo）放 <code>source/img/</code>，正文写 <code>/img/文件名</code></li></ol><hr><p>读完这篇就可以删了 —— 在 <code>source/_posts/</code> 里把 <code>image-demo.md</code> 和 <code>image-demo/</code> 文件夹一起删掉即可。</p>]]>
+    </content>
+    <id>https://othgh.github.io/2026/09/16/image-demo/</id>
+    <link href="https://othgh.github.io/2026/09/16/image-demo/"/>
+    <published>2026-09-16T06:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>这是一篇<strong>演示文章</strong>，专门演示怎么在文章里放图片。看完就可以删掉。</p>]]>
+    </summary>
+    <title>图片插入演示</title>
+    <updated>2026-09-16T05:59:28.999Z</updated>
+  </entry>
   <entry>
     <author>
       <name>止水来咯</name>
