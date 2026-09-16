@@ -19,7 +19,7 @@
         color: '0, 224, 176',   // 颜色 RGB，用逗号分隔
         opacity: 0.9,           // 整体透明度
         speed: 0.45,            // 飘动速度（px/帧）
-        zIndex: -1,             // 层级：-1 = 垫在内容下面（不挡字）
+        zIndex: 3,              // 层级：-1 = 垫在内容下面；正数 = 盖在文章卡片上（用户要求能看到）
         mobile: false           // 触屏设备是否启用
     };
 
@@ -75,6 +75,13 @@
     var linkSq = CONFIG.linkDist * CONFIG.linkDist;
     var mouseSq = CONFIG.mouseDist * CONFIG.mouseDist;
 
+    // 性能关键：把连线按透明度分成几档，每档用一条路径批量描边。
+    // 否则每条线都要 beginPath+stroke 一次，180 个粒子会有上千次绘制调用，很卡。
+    var BUCKETS = 5;
+    var buckets = [];
+    for (var b = 0; b < BUCKETS; b++) buckets.push([]);
+    var mouseSegs = [];
+
     function frame() {
         ctx.clearRect(0, 0, W, H);
 
@@ -100,39 +107,55 @@
             ctx.fillStyle = 'rgba(' + CONFIG.color + ',0.9)';
             ctx.fillRect(d.x - 0.6, d.y - 0.6, 1.4, 1.4);
 
-            // 与其他粒子连线（只算 i 之后的，避免重复）
+            // 与其他粒子连线（只算 i 之后的，避免重复）—— 先收集，稍后批量画
             for (var j = i + 1; j < dots.length; j++) {
                 var o = dots[j];
                 var dx = d.x - o.x;
                 var dy = d.y - o.y;
                 var distSq = dx * dx + dy * dy;
                 if (distSq < linkSq) {
-                    var a = (1 - distSq / linkSq) * 0.55;
-                    ctx.strokeStyle = 'rgba(' + CONFIG.color + ',' + a + ')';
-                    ctx.lineWidth = 0.8;
-                    ctx.beginPath();
-                    ctx.moveTo(d.x, d.y);
-                    ctx.lineTo(o.x, o.y);
-                    ctx.stroke();
+                    var t = 1 - distSq / linkSq;
+                    buckets[Math.min(BUCKETS - 1, (t * BUCKETS) | 0)].push(d.x, d.y, o.x, o.y);
                 }
             }
 
-            // 与鼠标连线
+            // 与鼠标的连线（透明度随距离衰减，但统一一档批量画）
             if (mouse.x !== null) {
                 var mx = d.x - mouse.x;
                 var my = d.y - mouse.y;
-                var msq = mx * mx + my * my;
-                if (msq < mouseSq) {
-                    var ma = (1 - msq / mouseSq) * 0.7;
-                    ctx.strokeStyle = 'rgba(' + CONFIG.color + ',' + ma + ')';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(d.x, d.y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
-                }
+                if (mx * mx + my * my < mouseSq) mouseSegs.push(d.x, d.y, mouse.x, mouse.y);
             }
         }
+
+        // 批量描边：粒子之间
+        for (var b = 0; b < BUCKETS; b++) {
+            var seg = buckets[b];
+            if (!seg.length) continue;
+            ctx.strokeStyle = 'rgba(' + CONFIG.color + ',' +
+                (((b + 0.5) / BUCKETS) * 0.55).toFixed(3) + ')';
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            for (var k = 0; k < seg.length; k += 4) {
+                ctx.moveTo(seg[k], seg[k + 1]);
+                ctx.lineTo(seg[k + 2], seg[k + 3]);
+            }
+            ctx.stroke();
+            seg.length = 0;          // 数组复用，不反复分配
+        }
+
+        // 批量描边：连到鼠标的线（更亮一点）
+        if (mouseSegs.length) {
+            ctx.strokeStyle = 'rgba(' + CONFIG.color + ',0.6)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            for (var m = 0; m < mouseSegs.length; m += 4) {
+                ctx.moveTo(mouseSegs[m], mouseSegs[m + 1]);
+                ctx.lineTo(mouseSegs[m + 2], mouseSegs[m + 3]);
+            }
+            ctx.stroke();
+            mouseSegs.length = 0;
+        }
+
         raf = requestAnimationFrame(frame);
     }
 
