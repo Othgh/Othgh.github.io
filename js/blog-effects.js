@@ -9,7 +9,20 @@
 (function () {
     'use strict';
 
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* 是否忽略系统的"减少动态效果"（prefers-reduced-motion）设置。
+     *
+     * 背景：Windows 关掉"动画效果"后（很多人为性能这么干，本机就是），Chrome 会报告
+     * prefers-reduced-motion: reduce。按无障碍规范此时应当关闭动画 —— 但那样整个站的
+     * 特效会全部消失，看起来"什么效果都没有"。
+     *
+     * 本站默认【忽略】该设置，始终播放特效。想恢复"尊重系统设置"：
+     *   1. 把下面改成 false
+     *   2. 同步删掉 scripts/custom.js 里那条 @media (prefers-reduced-motion: reduce)
+     */
+    var IGNORE_REDUCED_MOTION = true;
+
+    var reduce = !IGNORE_REDUCED_MOTION && !!window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
 
     /* ==================== 1. 鼠标粒子拖尾 ==================== */
