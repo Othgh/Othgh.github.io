@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>止水来咯</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://othgh.github.io/</id>
+  <link href="https://othgh.github.io/" rel="alternate"/>
+  <link href="https://othgh.github.io/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, 止水来咯</rights>
+  <subtitle>护网 · SRC · CTF 学习笔记</subtitle>
+  <title>止水来咯</title>
+  <updated>2026-09-16T06:47:23.206Z</updated>
+  <entry>
+    <author>
+      <name>止水来咯</name>
+    </author>
+    <category term="随笔" scheme="https://othgh.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="建站" scheme="https://othgh.github.io/tags/%E5%BB%BA%E7%AB%99/"/>
+    <content>
+      <![CDATA[<p>这里是我的安全笔记，记录学习和踩坑的过程。</p><span id="more"></span><h2 id="会写什么"><a href="#会写什么" class="headerlink" title="会写什么"></a>会写什么</h2><ul><li><strong>SRC &#x2F; 众测</strong>：从信息收集到拿权限的完整链路，包括绕 WAF、越权、逻辑漏洞</li><li><strong>CTF Writeup</strong>：Web &#x2F; 反序列化 &#x2F; PWN &#x2F; 密码学的题解</li><li><strong>代码审计</strong>：PHP &#x2F; Java 的常见漏洞模式与利用姿势</li><li><strong>工具与笔记</strong>：Burp、sqlmap、nuclei 之类的实战用法</li></ul><h2 id="关于这个站"><a href="#关于这个站" class="headerlink" title="关于这个站"></a>关于这个站</h2><p>Hexo + Butterfly 主题，托管在 GitHub Pages，不花钱也不用服务器。</p><p>写文章的方式：打开写作后台，在浏览器里写 Markdown，粘截图，点 Deploy 就发布。</p><hr><p><em>这篇是占位用的第一篇文章（Hexo 必须在至少有一篇文章时才会生成首页）。你可以直接改内容，或者删掉它写自己的。</em></p>]]>
+    </content>
+    <id>https://othgh.github.io/2026/09/16/welcome/</id>
+    <link href="https://othgh.github.io/2026/09/16/welcome/"/>
+    <published>2026-09-16T07:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>这里是我的安全笔记，记录学习和踩坑的过程。</p>]]>
+    </summary>
+    <title>欢迎</title>
+    <updated>2026-09-16T06:47:23.206Z</updated>
+  </entry>
+</feed>
