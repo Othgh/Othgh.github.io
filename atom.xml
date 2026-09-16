@@ -10,7 +10,23 @@
   <rights>All rights reserved 2026, 止水来咯</rights>
   <subtitle>护网 · SRC · CTF 学习笔记</subtitle>
   <title>止水来咯</title>
-  <updated>2026-09-16T06:47:23.206Z</updated>
+  <updated>2026-09-16T10:12:26.134Z</updated>
+  <entry>
+    <author>
+      <name>止水来咯</name>
+    </author>
+    <content>
+      <![CDATA[<p>[极客大挑战 2019]EasySQL<br><br>    进来是一个登录页面，但是看标题可以知道这是一道sql注入题<br><br>   <img src="/2026/09/16/SQL/ScreenShot_2026-09-16_162710_051.png" alt="登录页面"></p>]]>
+    </content>
+    <id>https://othgh.github.io/2026/09/16/SQL/</id>
+    <link href="https://othgh.github.io/2026/09/16/SQL/"/>
+    <published>2026-09-16T08:23:40.000Z</published>
+    <summary>
+      <![CDATA[<p>[极客大挑战 2019]EasySQL<br>	<br>    进来是一个登录页面，但是看标题可以知道这是一道sql注入题<br>	<br>   <img src="/2026/09/16/SQL/ScreenShot_2026-09-16_162710_051.png"]]>
+    </summary>
+    <title>SQL题</title>
+    <updated>2026-09-16T10:12:26.134Z</updated>
+  </entry>
   <entry>
     <author>
       <name>止水来咯</name>
