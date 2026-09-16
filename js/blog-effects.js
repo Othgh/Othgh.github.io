@@ -148,12 +148,9 @@
     var io = null;
 
     function reveal(el) {
+        // 只加类、不摘类：CSS 里上浮用的是独立的 translate 属性，
+        // 和 :hover 的 transform 互不干扰，所以不需要动画结束后再清理
         el.classList.add('si-in');
-        setTimeout(function () {
-            // 动画结束后摘掉这两个类，把 transform 让回给 :hover 的快速过渡
-            el.classList.remove('si-fade');
-            el.classList.remove('si-in');
-        }, 750);
     }
 
     function initFade() {
